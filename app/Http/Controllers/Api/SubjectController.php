@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Subject;
+use App\Models\Model\Subject;
 
 class SubjectController extends Controller
 {
@@ -15,7 +15,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = Subject::all();
+        return response()->json($subjects);
     }
 
     /**
@@ -44,7 +45,8 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $subject = Subject::findorfail($id);
+        return response()->json($subject);
     }
 
     /**
@@ -56,7 +58,9 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subjectU = Subject::findorfail($id);
+        $subjectU->update($request->all());
+        return response('Updated');
     }
 
     /**
@@ -67,6 +71,7 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Subject::where('id',$id)->delete();
+        return response('Deleted Successfully');
     }
 }
