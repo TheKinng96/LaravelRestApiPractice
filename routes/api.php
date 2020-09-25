@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SclassController;
+use App\Http\Controllers\Api\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\Api\SclassController;
 */
 
 Route::resource('/class', SclassController::class);
+Route::resource('/subject', SubjectController::class);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
